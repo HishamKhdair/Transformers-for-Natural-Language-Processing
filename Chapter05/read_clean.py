@@ -17,7 +17,7 @@ def load_clean_sentences(filename):
 # save a list of clean sentences to file
 def save_clean_sentences(sentences, filename):
 	dump(sentences, open(filename, 'wb'))
-	print('Saved: %s' % filename)
+	print(f'Saved: {filename}')
  
 # create a frequency table for all words
 def to_vocab(lines):
@@ -34,9 +34,9 @@ def trim_vocab(vocab, min_occurance):
  
 # mark all OOV with "unk" for all lines
 def update_dataset(lines, vocab):
-	new_lines = list()
+	new_lines = []
 	for line in lines:
-		new_tokens = list()
+		new_tokens = []
 		for token in line.split():
 			if token in vocab:
 				new_tokens.append(token)
