@@ -234,9 +234,11 @@ def main():
 
         def validation():
             print('Calculating validation loss...')
-            losses = []
-            for batch in tqdm.tqdm(val_batches):
-                losses.append(sess.run(val_loss, feed_dict={val_context: batch}))
+            losses = [
+                sess.run(val_loss, feed_dict={val_context: batch})
+                for batch in tqdm.tqdm(val_batches)
+            ]
+
             v_val_loss = np.mean(losses)
             v_summary = sess.run(val_loss_summary, feed_dict={val_loss: v_val_loss})
             summary_log.add_summary(v_summary, counter)
